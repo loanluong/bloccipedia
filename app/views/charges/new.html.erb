@@ -1,0 +1,10 @@
+<%= form_tag charges_path do %>
+   <% if current_user.standard? %>
+      <h4>Upgrade to a premium account for only 15.00!</h4>
+      <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" >
+      </script>
+   <% elsif current_user.premium? %>
+      <h4>Downgrade to a standard account. We're sad to see you go!</h4>
+      <%= link_to "Cancel Premium", downgrade_charge_path, class: "btn btn-danger" %>></script>
+   <% end %>
+ <% end %>

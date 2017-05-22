@@ -14,6 +14,11 @@
       <li><%= link_to "About", about_path %></li>
       <li><%= link_to "Wikis", wikis_path %></li>
       <div class="pull-right">
+        <% if current_user.present? && current_user.standard? %>
+          <%= link_to 'Upgrade to Premium', charges_new_path, :class => 'navbar-link' %>
+        <% elsif current_user.present? && current_user.premium? %>
+          <%= link_to 'Downgrade to Standard', charges_new_path, :class => 'navbar-link' %>
+        <% end %>
         <% if user_signed_in? %>
          Signed in as: <strong><%= current_user.email %></strong> User Role: <%= (current_user.role) %>
          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
