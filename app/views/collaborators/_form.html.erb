@@ -1,0 +1,22 @@
+<h4>Add a collaborator</h4>
+<%= form_tag(method: "get") do %>
+  <div class="form-group">
+      <%= label_tag(:email) %>
+      <%= text_field_tag(:email, "Enter an email")%>
+  </div>
+  <%= submit_tag("Add Collaborator", class: 'btn btn-success') %>
+<% end %>
+
+
+<% if @wiki.collaborators.length != 0 %>
+  <div class="form-group">
+    <p>Edit Collaborators</p>
+    <% collaborators = @wiki.collaborators%>
+    <% collaborators.each do |user| %>
+      <div class="user">
+        <%= user.id %>
+            <%= link_to "Delete", wiki_collaborator_path(@wiki, user), method: :delete %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

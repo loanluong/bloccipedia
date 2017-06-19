@@ -18,6 +18,9 @@
                 <%= f.check_box :private %> Private wiki
                 <% end %>
             </div>
+            <div class="form-group">
+                <%= render 'collaborators/form', collaborator: Collaborator.new, wiki: @wiki %>
+            </div>
         <% end %>
     <% end %>    
 </div>
